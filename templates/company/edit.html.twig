@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Company{% endblock %}
+
+{% block body %}
+
+    <section id="skills" class="bg-white py-5">
+        <div class="container max-height">
+            <div class="row ">
+                <div class="col text-center">
+                    <div class="d-grid gap-1">
+                        <a href="{{ path('company_new', { }) }}" class="btn btn-outline-dark text-uppercase">Create new
+                            Company</a>
+                    </div>
+                    <h1 class="display-3 text-uppercase text-dark mb-0">
+                        <strong>Edit  ({{ company.name }})</strong>
+                    </h1>
+                    <div class="title-underline bg-danger"></div>
+
+
+                </div>
+            </div>
+            <div class="row">
+
+                    <div class="col-md-12 text-center my-4">
+                        {{ include('company/_form.html.twig', {'button_label': 'Update'}) }}
+                        <div class="d-grid gap-1 mb-3 d-flex flex-row justify-content-center align-content-center">
+                            <a href="{{ path('company_show', {'id': company.id  }) }}"
+                               class="btn btn-outline-primary text-uppercase"><i class="fa fa-eye"></i> </a>
+
+                            <a href="{{ path('address_new', {'id': company.id  }) }}"
+                               class="btn btn-outline-info text-uppercase"> <i class="fas fa-map-marker-alt"></i> add address</a>
+                            {{ include('company/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+
+            </div>
+    </section>
+
+{% endblock %}

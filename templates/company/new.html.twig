@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Company{% endblock %}
+
+{% block body %}
+
+
+    <section id="skills" class="bg-white py-5">
+        <div class="container max-height">
+            <div class="row ">
+                <div class="col text-center">
+                    <div class="d-grid gap-1">
+                        <a href="{{ path('company_new', { }) }}" class="btn btn-outline-dark text-uppercase">Create new
+                            Company</a>
+                    </div>
+                    <h1 class="display-3 text-uppercase text-dark mb-0">
+                        <strong>Create</strong>
+                    </h1>
+                    <div class="title-underline bg-danger"></div>
+
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 text-center my-4">
+                    {{ include('company/_form.html.twig') }}
+                    <div class="d-grid gap-1 mb-3 d-flex flex-row justify-content-center align-content-center">
+                        <a href="{{ path('company_index', { }) }}"
+                           class="btn btn-outline-primary text-uppercase">
+                            <i class="fa fa-fast-backward"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+
+
+
+{% endblock %}
