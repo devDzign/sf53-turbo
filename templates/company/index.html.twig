@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Company index{% endblock %}
+
+{% block body %}
+
+    <section id="skills" class="bg-white py-5">
+        <div class="container max-height">
+            <div class="row ">
+                <div class="col text-center">
+                    <div class="d-grid gap-1">
+                        <a href="{{ path('company_new', { }) }}" class="btn btn-outline-dark text-uppercase">
+                            Create new Company
+                        </a>
+                    </div>
+                    <h1 class="display-3 text-uppercase text-dark mb-0">
+                        <strong>Companies List</strong>
+                    </h1>
+                    <div class="title-underline bg-danger"></div>
+                    <p class="mt-2 text-capitalize text-muted">All companies information</p>
+
+                </div>
+            </div>
+            <div class="row">
+                {% for company in companies %}
+                    <div class="col-md-6 col-lg-4 text-center my-4">
+                        <i class="fa fa-building fa-5x text-dark"></i>
+                        <h3 class="text-uppercase my-3">{{ company.name }}</h3>
+                        <p class="text-muted">
+                            description
+                        </p>
+                        <div class="d-grid gap-1 mb-3 d-flex flex-row justify-content-center align-content-center">
+                            <a href="{{ path('company_show', {'id': company.id  }) }}"
+                               class="btn btn-outline-primary text-uppercase"><i class="fa fa-eye"></i> </a>
+                            <a href="{{ path('company_edit', {'id': company.id  }) }}"
+                               class="btn btn-outline-success text-uppercase"><i class="fa fa-pen"></i> </a>
+                            <a href="{{ path('address_new', {'id': company.id  }) }}"
+                               class="btn btn-outline-info text-uppercase">add address</a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+    </section>
+
+{% endblock %}

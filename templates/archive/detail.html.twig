@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Archive Company{% endblock %}
+
+{% block body %}
+
+   {% set company = archive.data[0] %}
+
+{#   {{ dump(archive) }}#}
+{#   {{ dump(company) }}#}
+
+   <section id="team" class="bg-light py-5">
+      <div class="container">
+
+         <div class="row ">
+            <div class="col text-center">
+               <h1 class="display-3 text-uppercase text-dark mb-0">
+                  <strong>Company Archive Details</strong>
+               </h1>
+               <div class="title-underline bg-danger"></div>
+               <p class="mt-2 text-capitalize text-muted">some details</p>
+            </div>
+         </div>
+
+         <div class="row ">
+            <div class="col-md-12 mx-auto">
+               <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                     <span>Renseignements juridiques</span>
+                     <span>
+                                     <a href="{{ path('company_index', {  }) }}" class="btn btn-dark me-2">
+                                         <i class="fas fa-chevron-circle-left text-light"></i> List
+                            </a>
+                            <a href="{{ path('archive', {'id': company.id  }) }}"
+                               class="btn btn-outline-info me-2">
+                                <span class="text-dark"><i class="fas fa-history"></i> Historique</span>
+                            </a>
+                                </span>
+                  </div>
+                  <div class="card-body">
+                     <h5 class="card-title text-capitalize text-center">
+                        <i class="fa fa-building"></i> {{ company.name }}
+                     </h5>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                     <li class="list-group-item d-flex justify-content-between align-content-center">
+                        <span>Date création entreprise:</span>
+                        <span>{{ companyOrigin.dateOfRegistration | date('Y/m/d H:i:s') }}</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-content-center">
+                        <span>Forme juridique:</span>
+                        <span></span>{{ company.legalCategory.wording }}
+                     </li>
+
+                     <li class="list-group-item d-flex justify-content-between align-content-center">
+                        <span>La ville d'enregistrement:</span>
+                        <span>{{ company.cityOfRegistration }}</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-content-center">
+                        <span>Numéro siren:</span>
+                        <span>{{ company.siren }}</span>
+                     </li>
+                     <li class="list-group-item d-flex justify-content-between align-content-center">
+                        <span>Capital social: </span>
+                        <span>{{ company.capital }},00 €</span>
+                     </li>
+                  </ul>
+                  <div class="card-body">
+
+                     <h4 class="text-center">
+                        Total adresses ({{ company.localizations | length }})
+                     </h4>
+
+                     <div class="d-flex justify-content-center align-content-between">
+                        {% for address in company.localizations %}
+
+                           <div class="card me-1" style="width: 20rem;">
+                              <div class="card-body">
+                                 <div class="d-grid gap-1 mb-3">
+
+                                    <a href="#"
+                                       class="btn btn-outline-success"
+                                    >
+                                       <i class="fas fa-map-marker-alt"></i> {{ address.streetNumber }}
+                                       ,{{ address.streetType}} {{ address.streetName }} ,{{ address.zipCode }} {{ address.city }}
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        {% endfor %}
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </section>
+{% endblock %}

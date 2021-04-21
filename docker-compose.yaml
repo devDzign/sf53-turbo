@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+    database:
+        image: 'postgres:alpine'
+        container_name: '${DOCKER_PROJET_NAME}_postgres'
+        environment:
+            POSTGRES_PASSWORD: main
+            POSTGRES_USER: main
+            POSTGRES_DB: '${DOCKER_PROJET_NAME}_db'
+        ports:
+            - '6432:5432'
+#    database_panther:
+#        image: 'postgres:alpine'
+#        container_name: '${DOCKER_PROJET_NAME}_test_panther_postgres'
+#        environment:
+#            POSTGRES_PASSWORD: main
+#            POSTGRES_USER: main
+#            POSTGRES_DB: '${DOCKER_PROJET_NAME}_test_panther_db'
+#        ports:
+#            - '54322:5432'
+    redis:
+        image: library/redis:6-alpine
+        container_name: '${DOCKER_PROJET_NAME}_redis'
+        ports: [6379]
+
+    rabbitmq:
+        image: library/rabbitmq:3.8-management
+        container_name: '${DOCKER_PROJET_NAME}_mq'
+        ports: [5672, 15672]
+
+    mailer:
+        image: schickling/mailcatcher
+        container_name: '${DOCKER_PROJET_NAME}_mailer'
+        ports: [ 1025, 1080 ]

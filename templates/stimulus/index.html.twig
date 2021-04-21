@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Stimulus!{% endblock %}
+
+
+    {% block body %}
+
+        <section id="skills" class="bg-white py-5">
+            <div class="container max-height">
+
+                <div class="row ">
+                    <div class="col text-center">
+                        <h1 class="display-3 text-uppercase text-dark mb-0">
+                            <strong>Archived Company</strong>
+                        </h1>
+                        <div class="title-underline bg-danger"></div>
+                        <p class="mt-2 text-capitalize text-muted">total archives({{ archives | length }})</p>
+
+                    </div>
+                </div>
+
+                <div class="row"  {{ stimulus_controller(
+                    'search-component',
+                    {"company": companyId}
+                )
+                }}>
+
+
+
+                </div>
+
+            </div>
+        </section>
+
+    {% endblock %}
+
+
+
+

@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">{{ form_row(form.name) }}</div>
+    <div class="col-md-6">{{ form_row(form.siren) }}</div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">{{ form_row(form.cityOfRegistration) }}</div>
+    <div class="col-md-6">{{ form_row(form.capital) }}</div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">{{ form_row(form.legalCategory) }}</div>
+</div>
+
+{#<div class="row">#}
+{#    {% if form.localizations is defined %}#}
+{#        {% for field in form.localizations.vars.prototype.children %}#}
+{#            <div class="col-md-4">{{ form_row(field) }}</div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#</div>#}
+
+<div class="d-grid gap-1 mb-5 mt-5">
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}

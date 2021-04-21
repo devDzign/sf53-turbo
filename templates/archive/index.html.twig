@@ -1,0 +1,208 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Company index{% endblock %}
+
+{% block body %}
+
+    <section id="skills" class="bg-white py-5">
+        <div class="container max-height">
+
+            <div class="row ">
+                <div class="col text-center">
+                    <h1 class="display-3 text-uppercase text-dark mb-0">
+                        <strong>Archived Company</strong>
+                    </h1>
+                    <div class="title-underline bg-danger"></div>
+                    <p class="mt-2 text-capitalize text-muted">total archives({{ archives | length }})</p>
+
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-md-4 mx-auto">
+                    <div class="card border-danger mb-3" style="width: 20rem">
+                        <div class="d-flex justify-content-center">
+                            <h1><span class="badge bg-danger">Origin Entity</span></h1>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <h3>
+                                <span class="badge bg-danger">{{ companyOrigin.dateOfRegistration | date('Y/m/d H:i:s') }}</span>
+                            </h3>
+
+                        </div>
+                        <div class="card-header d-flex justify-content-start">
+                            <span class="">Renseignements juridiques </span>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title text-capitalize text-center">
+                                <i class="fa fa-building"></i> {{ companyOrigin.name }}
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <span>Date création entreprise:</span>
+                                <span>{{ companyOrigin.dateOfRegistration | date('Y/m/d H:i:s') }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <span>Forme juridique:</span>
+                                <span></span>{{ companyOrigin.legalCategory.wording }}
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <span>La ville d'enregistrement:</span>
+                                <span>{{ companyOrigin.cityOfRegistration }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <span>Numéro siren:</span>
+                                <span>{{ companyOrigin.siren }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <span>Capital social: </span>
+                                <span>{{ companyOrigin.capital }},00 €</span>
+                            </li>
+                        </ul>
+                        <div class="card-body">
+                            <h4 class="text-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Total Adresses  ({{ companyOrigin.localizations | length }})
+                                </button>
+                            </h4>
+
+                            <div class="d-flex justify-content-center align-content-between">
+                                <div class="card me-1" style="width: 20rem;">
+                                    <div class="card-body">
+                                        <div class="d-grid gap-1 mb-3">
+
+                                            <a href="{{ path('company_show', { 'id': companyOrigin.id }) }}" class="btn btn-outline-success">
+                                                <i class="fas fa-map-marker-alt"></i> Show this
+                                                Version {{ companyOrigin.dateOfRegistration | date('Y/m/d H:i:s') }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                {% for archive in archives %}
+                {% set company = archive.data[0] %}
+                <div class="col-md-4 mx-auto mb-3">
+                    <div class="card" style="width: 20rem">
+                        <div class="d-flex justify-content-center">
+                            <h1><span class="badge bg-dark">Old Entity</span></h1>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <h3>
+                                <span class="badge bg-info">{{ archive.createdAt | date('Y/m/d H:i:s') }}</span>
+                            </h3>
+                        </div>
+                            <div class="card-header d-flex justify-content-start">
+                                <span class="">Renseignements juridiques</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-capitalize text-center">
+                                    <i class="fa fa-building"></i> {{ company.name }}
+                                </h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-content-center">
+                                    <span>Date création entreprise:</span>
+                                    <span>{{ companyOrigin.dateOfRegistration |  date('Y/m/d H:i:s') }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-content-center">
+                                    <span>Forme juridique:</span>
+                                    <span></span>{{ company.legalCategory.wording }}
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-content-center">
+                                    <span>La ville d'enregistrement:</span>
+                                    <span>{{ company.cityOfRegistration }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-content-center">
+                                    <span>Numéro siren:</span>
+                                    <span>{{ company.siren }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-content-center">
+                                    <span>Capital social: </span>
+                                    <span>{{ company.capital }},00 €</span>
+                                </li>
+                            </ul>
+                            <div class="card-body">
+
+                                <h4 class="text-center">
+
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ archive.id }}">
+                                        Total Adresses ({{ company.localizations | length }})
+                                    </button>
+                                </h4>
+
+
+                                <div class="modal fade" id="exampleModal{{ archive.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ archive.id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Toutes les adresses</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="d-flex justify-content-center align-content-between">
+                                                    {% for address in company.localizations %}
+
+                                                        <div class="card me-1" style="width: 20rem;">
+                                                            <div class="card-body">
+                                                                <div class="d-grid gap-1 mb-3">
+
+                                                                    <a href="#" class="btn btn-outline-success"
+                                                                    >
+                                                                        <i class="fas fa-map-marker-alt"></i> {{ address.streetNumber }}
+                                                                        ,{{ address.streetType}} {{ address.streetName }} ,{{ address.zipCode }} {{ address.city }}
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="d-flex justify-content-center align-content-between">
+                                    <div class="card me-1" style="width: 20rem;">
+                                        <div class="card-body">
+                                            <div class="d-grid gap-1 mb-3">
+
+                                                <a href="{{ path('detail_archive', {'id': companyOrigin.id, 'id_archive': archive.id}) }}" class="btn btn-outline-success">
+                                                    <i class="fas fa-map-marker-alt"></i> Show this
+                                                    Version {{ archive.createdAt | date('Y/m/d H:i:s') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+    </section>
+
+{% endblock %}
+
