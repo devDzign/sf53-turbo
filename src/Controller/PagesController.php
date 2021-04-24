@@ -36,6 +36,4 @@ class PagesController extends AbstractController
             ]
         );
     }
-
 }
-

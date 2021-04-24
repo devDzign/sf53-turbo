@@ -73,10 +73,10 @@ class MessageController extends AbstractController
         return $this->handleForm(
             $form,
             $request,
-           function () {
-               $this->addFlash('success', 'message envoyé 🥇');
-               return $this->redirectToRoute('pages');
-           },
+            function () {
+                $this->addFlash('success', 'message envoyé 🥇');
+                return $this->redirectToRoute('pages');
+            },
             function (FormInterface $form, $data) {
                 return $this->render('pages/contact.html.twig', [
                     'form' => $form->createView()
@@ -84,5 +84,4 @@ class MessageController extends AbstractController
             }
         );
     }
-
 }
