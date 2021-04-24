@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e72f72bb8915097d3e7314543c160a12",
+    "content-hash": "e8e235235f2a28c775c12617277b726e",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1279,12 +1279,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "6a733901067e1b33ecf9dd4b85ecc8202dcae23f"
+                "reference": "79512c6089f34e8bc1befcb5df27ad6887cdc1fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/6a733901067e1b33ecf9dd4b85ecc8202dcae23f",
-                "reference": "6a733901067e1b33ecf9dd4b85ecc8202dcae23f",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/79512c6089f34e8bc1befcb5df27ad6887cdc1fa",
+                "reference": "79512c6089f34e8bc1befcb5df27ad6887cdc1fa",
                 "shasum": ""
             },
             "require": {
@@ -1357,7 +1357,7 @@
                 "issues": "https://github.com/doctrine/persistence/issues",
                 "source": "https://github.com/doctrine/persistence/tree/2.2.x"
             },
-            "time": "2021-04-20T21:45:10+00:00"
+            "time": "2021-04-21T16:01:09+00:00"
         },
         {
             "name": "doctrine/sql-formatter",
@@ -2756,12 +2756,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "39e6039cd5081176ed1d6c4fa7cfde22a236788b"
+                "reference": "5874dde40b5ff54e5fe1aff622905c606b00ae25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/39e6039cd5081176ed1d6c4fa7cfde22a236788b",
-                "reference": "39e6039cd5081176ed1d6c4fa7cfde22a236788b",
+                "url": "https://api.github.com/repos/symfony/config/zipball/5874dde40b5ff54e5fe1aff622905c606b00ae25",
+                "reference": "5874dde40b5ff54e5fe1aff622905c606b00ae25",
                 "shasum": ""
             },
             "require": {
@@ -2811,7 +2811,7 @@
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v5.3.0-BETA1"
+                "source": "https://github.com/symfony/config/tree/5.x"
             },
             "funding": [
                 {
@@ -2827,7 +2827,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-14T15:38:26+00:00"
+            "time": "2021-04-21T09:08:36+00:00"
         },
         {
             "name": "symfony/console",
@@ -2934,12 +2934,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "97741446e12502ff3fbc7e8344dcae7316d41682"
+                "reference": "d11a6dfd80e37c9b83d42a896ae598e6a7dd9adb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/97741446e12502ff3fbc7e8344dcae7316d41682",
-                "reference": "97741446e12502ff3fbc7e8344dcae7316d41682",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/d11a6dfd80e37c9b83d42a896ae598e6a7dd9adb",
+                "reference": "d11a6dfd80e37c9b83d42a896ae598e6a7dd9adb",
                 "shasum": ""
             },
             "require": {
@@ -3015,7 +3015,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-20T05:29:23+00:00"
+            "time": "2021-04-21T10:45:36+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3875,12 +3875,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "d0e10397f3ffbef3e03b1af537ae55995baa9b49"
+                "reference": "5dbd68b24fce31a3d5834962f994cf8b6985bd57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/d0e10397f3ffbef3e03b1af537ae55995baa9b49",
-                "reference": "d0e10397f3ffbef3e03b1af537ae55995baa9b49",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/5dbd68b24fce31a3d5834962f994cf8b6985bd57",
+                "reference": "5dbd68b24fce31a3d5834962f994cf8b6985bd57",
                 "shasum": ""
             },
             "require": {
@@ -4051,7 +4051,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-19T13:08:09+00:00"
+            "time": "2021-04-21T09:10:56+00:00"
         },
         {
             "name": "symfony/http-client",
@@ -7045,12 +7045,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "7b9e56fbc6bf7051fc5735a364de0c9968e26143"
+                "reference": "9ecefe415a821c65d103dc993403f5356ebc8ee1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/7b9e56fbc6bf7051fc5735a364de0c9968e26143",
-                "reference": "7b9e56fbc6bf7051fc5735a364de0c9968e26143",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/9ecefe415a821c65d103dc993403f5356ebc8ee1",
+                "reference": "9ecefe415a821c65d103dc993403f5356ebc8ee1",
                 "shasum": ""
             },
             "require": {
@@ -7078,6 +7078,7 @@
                 "symfony/finder": "^4.4|^5.0",
                 "symfony/http-kernel": "^5.0",
                 "symfony/intl": "^4.4|^5.0",
+                "symfony/polyfill-intl-icu": "^1.21",
                 "symfony/service-contracts": "^1.1.2|^2",
                 "symfony/yaml": "^4.4|^5.0"
             },
@@ -7116,7 +7117,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v5.3.0-BETA1"
+                "source": "https://github.com/symfony/translation/tree/5.x"
             },
             "funding": [
                 {
@@ -7132,7 +7133,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-13T19:38:10+00:00"
+            "time": "2021-04-21T09:10:56+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -10850,12 +10851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "c0122e90bb8b918e30b76138aeb5bc21b61d3b7f"
+                "reference": "3540a5d0cdebc2eac09950dd01fcac8c0deeaaff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/c0122e90bb8b918e30b76138aeb5bc21b61d3b7f",
-                "reference": "c0122e90bb8b918e30b76138aeb5bc21b61d3b7f",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/3540a5d0cdebc2eac09950dd01fcac8c0deeaaff",
+                "reference": "3540a5d0cdebc2eac09950dd01fcac8c0deeaaff",
                 "shasum": ""
             },
             "require": {
@@ -10898,7 +10899,7 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
-            "time": "2021-04-16T04:22:42+00:00"
+            "time": "2021-04-21T23:34:45+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -11610,12 +11611,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "7dc49f0e6247db66b7d8215d04b5d3b9e4455734"
+                "reference": "be1d899aaed9d526f233df78a5e8535862fca15a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/7dc49f0e6247db66b7d8215d04b5d3b9e4455734",
-                "reference": "7dc49f0e6247db66b7d8215d04b5d3b9e4455734",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/be1d899aaed9d526f233df78a5e8535862fca15a",
+                "reference": "be1d899aaed9d526f233df78a5e8535862fca15a",
                 "shasum": ""
             },
             "require": {
@@ -11675,9 +11676,9 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v1.10.0"
+                "source": "https://github.com/zenstruck/foundry/tree/master"
             },
-            "time": "2021-04-19T20:28:09+00:00"
+            "time": "2021-04-21T12:58:22+00:00"
         }
     ],
     "aliases": [],
@@ -11703,7 +11704,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2.5",
+        "php": ">=8.0",
         "ext-ctype": "*",
         "ext-iconv": "*"
     },

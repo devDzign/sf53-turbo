@@ -8,7 +8,7 @@ services:
             POSTGRES_USER: main
             POSTGRES_DB: '${DOCKER_PROJET_NAME}_db'
         ports:
-            - '6432:5432'
+            - '5434:5432'
 #    database_panther:
 #        image: 'postgres:alpine'
 #        container_name: '${DOCKER_PROJET_NAME}_test_panther_postgres'

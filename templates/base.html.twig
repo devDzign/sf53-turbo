@@ -14,17 +14,21 @@
     {% endblock %}
 </head>
 <body>
-<main id="swup">
+<main>
     {% include 'ui/_partials/navbar.html.twig' %}
     <div class="container">
         <div class="row min-height mt-5">
+            {% for message in app.flashes('success') %}
+                <div class="" style="color: green; font-weight: bold;">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="col-12 d-flex flex-column justify-content-center align-content-center">
                 {% block body %}
                 {% endblock %}
             </div>
         </div>
     </div>
-
 </main>
 
 </body>

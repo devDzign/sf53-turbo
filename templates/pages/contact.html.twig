@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title "About" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-sm-12">
+                <div class="d-flex justify-content-center align-content-center">
+                    <a href="{{ path('pages', {  }) }}" class="btn btn-outline-dark">home</a>
+                    <a href="{{ path('about', {  }) }}" class="btn btn-outline-dark">About</a>
+                </div>
+                <h1>Contact</h1>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center align-content-center">
+                {{ form_start(form) }}
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(form) }}
+                </div>
+                {{ form_row(form.name) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.message) }}
+
+                <div class="d-grid gap-1 mt-2">
+                    <button class="btn btn-outline-dark" formnovalidate>
+                        {{ button_label|default('Save') }}
+                    </button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

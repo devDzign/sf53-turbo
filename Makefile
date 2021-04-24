@@ -1,4 +1,4 @@
-DC=docker compose
+DC=docker-compose
 MAKE=meke
 CONTAINER= php
 SF= symfony
