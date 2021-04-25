@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Services\HandleForm;
-use App\Services\HandleFormService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,12 +17,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class MessageController extends AbstractController
 {
 
-    private HandleForm $handleForm;
 
-    public function __construct(HandleFormService $handleFormService)
-    {
-        $this->handleFormService = $handleFormService;
-    }
 
     #[Route('/pages/contact', name: 'contact')]
     public function contact(
