@@ -138,6 +138,6 @@ class Address
 
     public function __toString()
     {
-        return (string) $this->getCity();
+        return (string) ($this->getStreetNumber().', '.$this->getStreetType().' '.$this->getStreetName().','.$this->getZipCode().' '.$this->getCity());
     }
 }

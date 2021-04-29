@@ -20,3 +20,13 @@
     height: 400px!important;
   }
 }
+
+body {
+    background-color: #e3e7ed !important;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none !important;
+  background-color: transparent !important;
+}

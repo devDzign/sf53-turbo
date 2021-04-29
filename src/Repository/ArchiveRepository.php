@@ -87,4 +87,22 @@ class ArchiveRepository extends ServiceEntityRepository
 
         return $qb->getResult();
     }
+
+    public function getData()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->select("a.objectId, c.name, count(a.id) as nb")
+//            ->leftJoin(Company::class, 'c')
+//            ->where('a.objectId = c.id')
+            ->leftJoin(
+                Company::class,
+                'c',
+                \Doctrine\ORM\Query\Expr\Join::WITH,
+                'a.objectId = c.id'
+            )
+
+            ->groupBy('a.objectId', 'c.name');
+
+        return $qb->getQuery()->getArrayResult();
+    }
 }

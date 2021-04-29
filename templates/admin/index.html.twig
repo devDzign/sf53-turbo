@@ -1,0 +1,69 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+
+
+{% block page_title 'Administartion' %}
+
+{% block configured_stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ parent() }}
+{% endblock %}
+
+ {% block head_javascript %}
+ {{ parent() }}
+ {{ encore_entry_script_tags('app') }}
+ {% endblock head_javascript %}
+
+{% block page_content %}
+    <section id="chart">
+        <div class="container-fluid">
+            <div class="row justify-content-evenly max-height">
+                <div class="col-12">
+                    <div class="position-relative m-4 d-flex flex-column">
+                        <div class="progress" style="height: 5px;">
+                            <div class="progress-bar"
+                                 role="progressbar"
+                                 style="width: 50%;"
+                                 aria-valuenow="25"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"></div>
+                        </div>
+                        <button type="button"
+                                class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+                                style="width: 5rem;
+                                height:2rem;"
+                        >
+                            order
+                        </button>
+                        <button type="button"
+                                class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"
+                                style="width: 5rem; height:2rem;">payment
+                        </button>
+                        <button type="button"
+                                class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill"
+                                style="width: 5rem; height:2rem;">confirm
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 alert-warning d-flex justify-content-between align-content-center p-3 shadow shadow rounded border border-dark border-3">
+                    <i class="fas fa-building fa-5x text-dark text-center"></i>
+                    <p class="text-dark"><span class="display-2">{{ companiesCount }}</span> Companies</p>
+                </div>
+                <div class="col-md-3 col-sm-12 alert-success d-flex justify-content-between align-content-center p-3 shadow shadow rounded border border-dark border-3">
+                    <i class="fas fa-archive fa-5x text-dark text-center"></i>
+                    <p class="text-dark"><span class="display-2">{{ archivedCount }}</span>archives</p>
+                </div>
+
+                <div class="col-md-3 col-sm-12 alert-info d-flex justify-content-between align-content-center p-3 shadow shadow rounded border border-dark border-3">
+                    <i class="fas fa-user-alt fa-5x text-dark text-center"></i>
+                    <p class="text-dark"><span class="display-2">200</span>Users</p>
+                </div>
+
+                <div class="col-md-12 col-sm-12 p-3 shadow shadow rounded border border-dark border-3 mt-3">
+                    {{ render_chart(chart) }}
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
