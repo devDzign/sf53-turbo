@@ -1,4 +1,4 @@
-DC=docker-compose
+DC=docker compose
 MAKE=meke
 CONTAINER= php
 SF= symfony
@@ -26,7 +26,7 @@ endif
 .PRECIOUS: .env.local docker-compose.yml
 
 install: ## Process all step in order to setup the projects
-install: dstop dup dps composer ibuild build cleanmigration preparedb sstop srun sopen slog
+install: dstop dup dps composer yarn-install build clean-migration preparedb sstop srun sopen slog
 
 ##
 ## Server
@@ -46,13 +46,13 @@ slog: ## Show log server with command symfony
 sopen: ## open local website
 	$(SF) open:local
 
-ibuild: ## open local website
-	yarn install
+yarn-install: ## open local website
+	yarn install --force
 
 build: ## open local website
 	yarn build
 
-cleanmigration: ## open local website
+clean-migration: ## open local website
 	rm -rf migrations/*
 
 sstatus: ## Give all cron status

@@ -16,3 +16,5 @@ import { Tooltip, Toast, Popover, Modal, ScrollSpy, Alert,Tab, Button, Carousel,
 $('select').select2();
 // start the Stimulus application
 import './bootstrap';
+
+import './js/turbo-progressbar'
