@@ -6,6 +6,7 @@ use App\Entity\Company;
 use App\Entity\Product;
 use App\Repository\ArchiveRepository;
 use App\Repository\CompanyRepository;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -44,7 +45,7 @@ class DashboardController extends AbstractDashboardController
         $datasArchived = $this->archiveRepository->getData();
 
         $labels = [];
-        $datas = [];
+        $datas  = [];
         foreach ($datasArchived as $data) {
             $labels[] = $data["name"].'-'.$data['objectId'];
             $datas[]  = $data['nb'];
@@ -104,5 +105,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Companies', 'fas fa-building');
         yield MenuItem::linkToCrud('Company', 'fas fa-list', Company::class);
         yield MenuItem::linkToCrud('Products', 'fas fa-store', Product::class);
+    }
+
+    public function configureAssets(): Assets
+    {
+        return parent::configureAssets()
+            ->addWebpackEncoreEntry('app');
     }
 }
