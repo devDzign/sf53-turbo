@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Company;
+use App\Entity\Product;
 use App\Repository\ArchiveRepository;
 use App\Repository\CompanyRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -94,7 +95,7 @@ class DashboardController extends AbstractDashboardController
     public function configureCrud(): Crud
     {
         return Crud::new()
-            ->setPaginatorPageSize(2);
+            ->setPaginatorPageSize(10);
     }
 
     public function configureMenuItems(): iterable
@@ -102,5 +103,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::section('Companies', 'fas fa-building');
         yield MenuItem::linkToCrud('Company', 'fas fa-list', Company::class);
+        yield MenuItem::linkToCrud('Products', 'fas fa-store', Product::class);
     }
 }

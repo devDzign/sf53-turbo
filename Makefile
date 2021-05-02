@@ -22,11 +22,14 @@ endif
 ##
 ## Project setup
 ##---------------------------------------------------------------------------
-.PHONY: install
+.PHONY: install reset-db
 .PRECIOUS: .env.local docker-compose.yml
 
 install: ## Process all step in order to setup the projects
 install: dstop dup dps composer yarn-install build clean-migration preparedb sstop srun sopen slog
+
+reset-db: ## Reset data base
+reset-db: clean-migration preparedb
 
 ##
 ## Server
@@ -110,7 +113,7 @@ require-files: .env.local
 	fi
 
 ##
-## Symfony
+## Symfony Messenger
 ##---------------------------------------------------------------------------
 .PHONY: sf-msg-cons sf-rabbitmq
 
@@ -136,6 +139,11 @@ else
 	@echo 'no toto around'
 endif
 
+
+##
+## Symfony data base
+##---------------------------------------------------------------------------
+.PHONY: preparedb
 preparedb: ## prepare environment test
 	$(CONSOLE) cache:clear
 	$(CONSOLE) doctrine:database:drop --if-exists -f
