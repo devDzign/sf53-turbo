@@ -51,7 +51,7 @@ class CompanyController extends AbstractController
             $form,
             $request,
             function () {
-                $this->addFlash('success', 'message envoyé 🥇');
+                $this->addFlash('success', 'message envoyé 🥇 🔋');
                 return $this->redirectToRoute('company_index');
             },
             function (FormInterface $form, $data) {
