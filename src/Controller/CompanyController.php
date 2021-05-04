@@ -7,6 +7,7 @@ use App\Form\CompanyType;
 use App\Repository\CompanyRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,24 +44,39 @@ class CompanyController extends AbstractController
     ): Response {
         $company = new Company();
         $form    = $this->createForm(CompanyType::class, $company);
-        $form->handleRequest($request);
+//        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
 
-            $entityManager->persist($company);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('company_index');
-        }
-
-        return $this->render(
-            'company/new.html.twig',
-            [
-                'company' => $company,
-                'form'    => $form->createView(),
-            ]
+        return $this->handleForm(
+            $form,
+            $request,
+            function () {
+                $this->addFlash('success', 'message envoyé 🥇');
+                return $this->redirectToRoute('company_index');
+            },
+            function (FormInterface $form, $data) {
+                return $this->render('company/new.html.twig', [
+                    'form' => $form->createView()
+                ]);
+            }
         );
+
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $entityManager = $this->getDoctrine()->getManager();
+//
+//            $entityManager->persist($company);
+//            $entityManager->flush();
+//
+//            return $this->redirectToRoute('company_index');
+//        }
+
+//        return $this->render(
+//            'company/new.html.twig',
+//            [
+//                'company' => $company,
+//                'form'    => $form->createView(),
+//            ]
+//        );
     }
 
     #[Route('/{id}', name: 'company_show', methods: ['GET'])]
