@@ -114,7 +114,7 @@ class ProductCrudController extends AbstractCrudController
                 function ($entity) {
                     dd($entity);
                     return [
-                        'test'=> $entity
+                        'test' => $entity
                     ];
                 }
             )
@@ -163,5 +163,4 @@ class ProductCrudController extends AbstractCrudController
                     ->setCssClass('btn btn-outline-success mt-2')
             );
     }
-
 }

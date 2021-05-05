@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-
 use App\Controller\PagesController;
 use App\Entity\Company;
 use App\Form\AddressType;
@@ -19,7 +18,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
-
 
 class CompanyCrudController extends AbstractCrudController
 {
@@ -149,5 +147,4 @@ class CompanyCrudController extends AbstractCrudController
 //
 //        return $product;
 //    }
-
 }

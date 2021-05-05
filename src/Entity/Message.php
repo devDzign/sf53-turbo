@@ -6,13 +6,17 @@ use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=MessageRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
+ * @ORM\Table(indexes={@Index(name="created_at_index", columns={"created_at"})})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Message
 {
+    use Timestamp;
+
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -23,19 +27,17 @@ class Message
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Conversation::class, inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Conversation", inversedBy="messages")
      */
     private $conversation;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="messages")
-     */
-    private $participant;
+    private $mine;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $createdAt;
 
     public function getId(): ?int
     {
@@ -54,14 +56,14 @@ class Message
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getUser(): ?User
     {
-        return $this->createdAt;
+        return $this->user;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setUser(?User $user): self
     {
-        $this->createdAt = $createdAt;
+        $this->user = $user;
 
         return $this;
     }
@@ -78,15 +80,19 @@ class Message
         return $this;
     }
 
-    public function getParticipant(): ?Participant
+    /**
+     * @return mixed
+     */
+    public function getMine()
     {
-        return $this->participant;
+        return $this->mine;
     }
 
-    public function setParticipant(?Participant $participant): self
+    /**
+     * @param mixed $mine
+     */
+    public function setMine($mine): void
     {
-        $this->participant = $participant;
-
-        return $this;
+        $this->mine = $mine;
     }
 }

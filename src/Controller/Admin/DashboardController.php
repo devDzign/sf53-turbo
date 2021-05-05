@@ -44,7 +44,7 @@ class DashboardController extends AbstractDashboardController
     #[Route('/adminer', name: 'adminer')]
     public function adminer(Request $request): Response
     {
-        dd('adminer',$request->attributes->all());
+        dd('adminer', $request->attributes->all());
     }
 
 
@@ -56,7 +56,7 @@ class DashboardController extends AbstractDashboardController
         $labels = [];
         $datas  = [];
         foreach ($datasArchived as $data) {
-            $labels[] = $data["name"].'-'.$data['objectId'];
+            $labels[] = $data["name"] . '-' . $data['objectId'];
             $datas[]  = $data['nb'];
         }
 
@@ -126,7 +126,7 @@ class DashboardController extends AbstractDashboardController
     public function configureActions(): Actions
     {
         return parent::configureActions()
-            ->update(Crud::PAGE_INDEX, Action::NEW,  function (Action $action) {
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action
                     ->setIcon('fa fa-pen')
                     ->setLabel('Create')
@@ -134,5 +134,4 @@ class DashboardController extends AbstractDashboardController
             })
             ;
     }
-
 }

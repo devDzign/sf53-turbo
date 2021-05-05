@@ -16,7 +16,7 @@ class ConversationController extends AbstractController
     private ParticipantRepository $participantRepository;
     private EntityManagerInterface $entityManager;
 
-    public function __construct(ParticipantRepository $participantRepository , EntityManagerInterface $entityManager)
+    public function __construct(ParticipantRepository $participantRepository, EntityManagerInterface $entityManager)
     {
         $this->participantRepository = $participantRepository;
         $this->entityManager = $entityManager;
@@ -32,7 +32,7 @@ class ConversationController extends AbstractController
         $otherUsers =  $request->get('otherUsers', 0);
         $otherUsers = $this->participantRepository->find($otherUsers);
 
-        if(is_null($otherUsers)){
+        if (is_null($otherUsers)) {
             throw new \Exception('The user was not found');
         }
 

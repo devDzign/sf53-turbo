@@ -7,8 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-date_default_timezone_set('Europe/Luxembourg');
-
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  * @Vich\Uploadable()

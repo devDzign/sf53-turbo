@@ -37,8 +37,7 @@ class RegistrationController extends AbstractController
         return $this->handleForm(
             $form,
             $request,
-            function (FormInterface $form, $data) use ($passwordEncoder, $user)
-            {
+            function (FormInterface $form, $data) use ($passwordEncoder, $user) {
                 $user->setPassword(
                     $passwordEncoder->hashPassword(
                         $user,
@@ -51,12 +50,14 @@ class RegistrationController extends AbstractController
                 $entityManager->flush();
 
                 // generate a signed url and email it to the user
-                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                                                            (new TemplatedEmail())
-                                                                ->from(new Address('contact@mchab.com', '"MChab Contact"'))
-                                                                ->to($user->getEmail())
-                                                                ->subject('Please Confirm your Email')
-                                                                ->htmlTemplate('registration/confirmation_email.html.twig')
+                $this->emailVerifier->sendEmailConfirmation(
+                    'app_verify_email',
+                    $user,
+                    (new TemplatedEmail())
+                        ->from(new Address('contact@mchab.com', '"MChab Contact"'))
+                        ->to($user->getEmail())
+                        ->subject('Please Confirm your Email')
+                        ->htmlTemplate('registration/confirmation_email.html.twig')
                 );
                 // do anything else you need here, like send an email
 
@@ -68,9 +69,6 @@ class RegistrationController extends AbstractController
                 ]);
             }
         );
-
-
-
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
