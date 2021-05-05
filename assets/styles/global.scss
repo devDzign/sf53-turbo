@@ -1,6 +1,6 @@
 /*login and register*/
 .max-height {
-  min-height: 100vh;
+  min-height: calc(100vh - 120px );
 }
 
 // faire une line
@@ -37,4 +37,8 @@ a {
   height: 10px;
   background-color: #a11b4c;
   margin-top: 60px;
+}
+
+.badge-danger {
+  background-color: #dc3545 !important;
 }
