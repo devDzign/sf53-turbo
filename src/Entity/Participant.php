@@ -48,7 +48,7 @@ class Participant
 
     public function getConversation(): ?Conversation
     {
-        return $this->conversation;
+        return $this->coversation;
     }
 
     public function setConversation(?Conversation $conversation): self
