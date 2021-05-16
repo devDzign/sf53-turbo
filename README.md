@@ -13,5 +13,9 @@ git clone https://github.com/devDzign/sf52-company-archived.git
 
 Installez le projet :
 ```
+cd sf52-company-archived
 make install
 ```
+
+**Some packages docs** :
+* Easy-log [Format logs](https://github.com/EasyCorp/easy-log-handler#installation)
