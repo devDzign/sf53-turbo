@@ -44,39 +44,42 @@ class CompanyController extends AbstractController
     ): Response {
         $company = new Company();
         $form    = $this->createForm(CompanyType::class, $company);
-//        $form->handleRequest($request);
 
 
-        return $this->handleForm(
-            $form,
-            $request,
-            function () {
-                $this->addFlash('success', 'message envoyé 🥇 🔋');
-                return $this->redirectToRoute('company_index');
-            },
-            function (FormInterface $form, $data) {
-                return $this->render('company/new.html.twig', [
-                    'form' => $form->createView()
-                ]);
-            }
-        );
 
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $entityManager = $this->getDoctrine()->getManager();
-//
-//            $entityManager->persist($company);
-//            $entityManager->flush();
-//
-//            return $this->redirectToRoute('company_index');
-//        }
-
-//        return $this->render(
-//            'company/new.html.twig',
-//            [
-//                'company' => $company,
-//                'form'    => $form->createView(),
-//            ]
+//        return $this->handleForm(
+//            $form,
+//            $request,
+//            function () {
+//                $this->addFlash('success', 'message envoyé 🥇 🔋');
+//                return $this->redirectToRoute('company_index');
+//            },
+//            function (FormInterface $form, $data) {
+//                return $this->render('company/new.html.twig', [
+//                    'form' => $form->createView()
+//                ]);
+//            }
 //        );
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->persist($company);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('company_index');
+        }
+
+        return $this->renderForm(
+            'company/new.html.twig',
+            [
+                'company' => $company,
+                'form'    => $form,
+            ]
+        );
     }
 
     #[Route('/{id}', name: 'company_show', methods: ['GET'])]
@@ -105,11 +108,11 @@ class CompanyController extends AbstractController
             return $this->redirectToRoute('company_show', ['id' => $company->getId()]);
         }
 
-        return $this->render(
+        return $this->renderForm(
             'company/edit.html.twig',
             [
                 'company' => $company,
-                'form'    => $form->createView(),
+                'form'    => $form,
             ]
         );
     }

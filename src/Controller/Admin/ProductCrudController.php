@@ -48,10 +48,10 @@ class ProductCrudController extends AbstractCrudController
             MoneyField::new('price')->setCurrency('EUR'),
         ];
 
-//        $fields[] = match ($pageName) {
-//            Crud::PAGE_INDEX, Crud::PAGE_DETAIL => ImageField::new('image')->setBasePath('/uploads/images/products/'),
-//            default => TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
-//        };
+        $fields[] = match ($pageName) {
+            Crud::PAGE_INDEX, Crud::PAGE_DETAIL => ImageField::new('image')->setBasePath('/uploads/images/products/'),
+            default => TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
+        };
 
         return $fields;
     }

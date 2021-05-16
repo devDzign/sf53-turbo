@@ -47,6 +47,12 @@ services:
           - "xpack.security.enabled=false"
           - "http.cors.enabled=true"
           - "http.cors.allow-origin=*"
+      healthcheck:
+              test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health?wait_for_status=yellow&timeout=30s || exit 1"]
+              interval: 10s
+              timeout: 30s
+              retries: 10
+
 
     # elasticsearch head manager (fork of mobz/elasticsearch-head for elasticsearch 6)
     # /!\ it isn't an official image /!\
@@ -59,12 +65,13 @@ services:
       ports:
         - "9109:9100"
 
+
     kibana:
       image: docker.elastic.co/kibana/kibana:6.8.6
       container_name: '${DOCKER_PROJET_NAME}_kibana'
       ports:
         - "5601:5601"
       environment:
-        - "ELASTICSEARCH_URL=sf53_historization_system_elasticasearch"
+        - "ELASTICSEARCH_URL=http://sf53_historization_system_elasticasearch"
       depends_on:
         - elasticsearch

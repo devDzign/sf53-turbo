@@ -1,13 +1,13 @@
 fos_elastica:
     clients:
         default: { host: 'localhost', port: '9209' }
-    indexes:
-        app:
-            use_alias: true
-            types:
-                companies:
-                    properties:
-                        name: ~
-                    persistence:
-                        driver: orm
-                        model: App\Entity\Company
+#    indexes:
+#        book:
+#            properties:
+#                name: ~
+#            persistence:
+#                driver: orm
+#                model: App\Entity\Company
+#                provider: ~
+#                finder: ~
+#                repository: App\Repository\BookRepository
