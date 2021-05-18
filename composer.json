@@ -47,6 +47,7 @@
         "symfony/web-link": "5.*",
         "symfony/webpack-encore-bundle": "v1.11.1",
         "symfony/yaml": "5.*",
+        "symfonycasts/reset-password-bundle": "dev-main",
         "symfonycasts/verify-email-bundle": "dev-main",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
