@@ -1,5 +1,5 @@
-{% set currentPath = app.request.attributes.get('_route')%}
-{#{{ dump(currentPath) }}#}
+{% set currentPath = app.request.attributes.get('_route') %}
+{# {{ dump(currentPath) }} #}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ path('company_index', {  }) }}">Navbar</a>
@@ -24,10 +24,43 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if currentPath == 'company_new' %} active {% endif %}" href="{{ path('company_new', {  }) }}">Create Company</a>
+                    <a class="nav-link {% if currentPath == 'company_new' %} active {% endif %}"
+                       href="{{ path('company_new', {  }) }}">Create Company</a>
                 </li>
 
             </ul>
+
+
+            <ul class="navbar-nav ms-auto flex-nowrap">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a href="{{ path('account', {  }) }}" class="nav-link m-2 menu-item">
+                            Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_logout', {  }) }}" class="nav-link m-2 menu-item">
+                            Logout
+                        </a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link mt-2 {% if currentPath == 'app_register' %} active {% endif %}"
+                           href="{{ path('app_register', {  }) }}">
+                            Register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_login', {  }) }}" class="nav-link m-2 menu-item">
+                            Login
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
         </div>
+
+
     </div>
 </nav>

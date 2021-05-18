@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <section id="registration">
+        <div class="container ">
+            <div class="row max-height d-flex align-items-center justify-content-center">
+                <div class="col">
+                    {% for flashError in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                    {% endfor %}
+
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h1>Register</h1>
+                        </div>
+                        <div class="card-body">
+
+                            {{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'}} ) }}
+
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        {{ form_widget(registrationForm.email) }}
+                                        <label for="floatingInput" class="text-dark">Email</label>
+                                    </div>
+                                    {{ form_errors(registrationForm.email) }}
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        {{ form_widget(registrationForm.username) }}
+                                        <label for="floatingInput">Username</label>
+                                    </div>
+                                    {{ form_errors(registrationForm.username) }}
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        {{ form_widget(registrationForm.firstname) }}
+                                        <label for="floatingInput" class="text-dark">Firstname</label>
+                                    </div>
+                                    {{ form_errors(registrationForm.firstname) }}
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        {{ form_widget(registrationForm.lastname) }}
+                                        <label for="floatingInput">Lastname</label>
+                                    </div>
+                                    {{ form_errors(registrationForm.lastname) }}
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        {{ form_widget(registrationForm.plainPassword.first) }}
+                                        <label for="floatingInput">{{ registrationForm.plainPassword.first.vars.label }}</label>
+                                    </div>
+                                    {{ form_errors(registrationForm.plainPassword.first) }}
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        {{ form_widget(registrationForm.plainPassword.second) }}
+                                        <label for="floatingInput">{{ registrationForm.plainPassword.second.vars.label }}</label>
+                                    </div>
+                                    {{ form_errors(registrationForm.plainPassword.second) }}
+                                </div>
+                            </div>
+
+
+                            <div class="row mt-2">
+                                <div class="col d-flex flex-row">
+                                    {{ form_row(registrationForm.agreeTerms) }}
+                                    <a href="{{ path('app_cgu', {  }) }}" target="_blank" class="ms-1">Read cgu</a>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-1 mt-3">
+                                <button type="submit" class="btn btn-outline-dark" name="register">
+                                    Register
+                                </button>
+                            </div>
+
+                            {{ form_rest(registrationForm) }}
+
+                            {{ form_end(registrationForm) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

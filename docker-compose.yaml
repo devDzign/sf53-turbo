@@ -8,7 +8,7 @@ services:
             POSTGRES_USER: main
             POSTGRES_DB: '${DOCKER_PROJET_NAME}_db'
         ports:
-            - '6432:5432'
+            - '5434:5432'
 #    database_panther:
 #        image: 'postgres:alpine'
 #        container_name: '${DOCKER_PROJET_NAME}_test_panther_postgres'
@@ -32,3 +32,46 @@ services:
         image: schickling/mailcatcher
         container_name: '${DOCKER_PROJET_NAME}_mailer'
         ports: [ 1025, 1080 ]
+
+     # elasticsearch server (official image)
+      # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+    elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:6.8.3 # 6.8.4 out
+      container_name: '${DOCKER_PROJET_NAME}_elasticasearch'
+      ports:
+        - "9209:9200"
+      environment:
+          - "discovery.type=single-node"
+          - "bootstrap.memory_lock=true"
+          - "ES_JAVA_OPTS=-Xms1G -Xmx1G"
+          - "xpack.security.enabled=false"
+          - "http.cors.enabled=true"
+          - "http.cors.allow-origin=*"
+      healthcheck:
+              test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health?wait_for_status=yellow&timeout=30s || exit 1"]
+              interval: 10s
+              timeout: 30s
+              retries: 10
+
+
+    # elasticsearch head manager (fork of mobz/elasticsearch-head for elasticsearch 6)
+    # /!\ it isn't an official image /!\
+    # https://hub.docker.com/r/tobias74/elasticsearch-head
+    elasticsearch-head:
+      image: tobias74/elasticsearch-head:6
+      container_name: '${DOCKER_PROJET_NAME}_elasticsearch-head'
+      depends_on:
+        - elasticsearch
+      ports:
+        - "9109:9100"
+
+
+    kibana:
+      image: docker.elastic.co/kibana/kibana:6.8.6
+      container_name: '${DOCKER_PROJET_NAME}_kibana'
+      ports:
+        - "5601:5601"
+      environment:
+        - "ELASTICSEARCH_URL=http://sf53_historization_system_elasticasearch"
+      depends_on:
+        - elasticsearch

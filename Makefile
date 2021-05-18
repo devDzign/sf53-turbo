@@ -22,11 +22,14 @@ endif
 ##
 ## Project setup
 ##---------------------------------------------------------------------------
-.PHONY: install
+.PHONY: install reset-db
 .PRECIOUS: .env.local docker-compose.yml
 
 install: ## Process all step in order to setup the projects
-install: dstop dup dps composer ibuild build cleanmigration preparedb sstop srun sopen slog
+install: dstop dup dps composer yarn-install build clean-migration preparedb sstop srun sopen slog
+
+reset-db: ## Reset data base
+reset-db: clean-migration preparedb
 
 ##
 ## Server
@@ -46,13 +49,13 @@ slog: ## Show log server with command symfony
 sopen: ## open local website
 	$(SF) open:local
 
-ibuild: ## open local website
-	yarn install
+yarn-install: ## open local website
+	yarn install --force
 
 build: ## open local website
 	yarn build
 
-cleanmigration: ## open local website
+clean-migration: ## open local website
 	rm -rf migrations/*
 
 sstatus: ## Give all cron status
@@ -110,7 +113,7 @@ require-files: .env.local
 	fi
 
 ##
-## Symfony
+## Symfony Messenger
 ##---------------------------------------------------------------------------
 .PHONY: sf-msg-cons sf-rabbitmq
 
@@ -136,10 +139,16 @@ else
 	@echo 'no toto around'
 endif
 
+
+##
+## Symfony data base
+##---------------------------------------------------------------------------
+.PHONY: preparedb
 preparedb: ## prepare environment test
 	$(CONSOLE) cache:clear
 	$(CONSOLE) doctrine:database:drop --if-exists -f
 	$(CONSOLE) doctrine:database:create
 	$(CONSOLE) doctrine:migrations:diff
 	$(CONSOLE) doctrine:migrations:migrate -n
+	$(CONSOLE) doctrine:fixture:load -n
 	$(CONSOLE) app:import:legal-categories

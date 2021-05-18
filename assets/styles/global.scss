@@ -1,6 +1,6 @@
 /*login and register*/
 .max-height {
-  min-height: 100vh;
+  min-height: calc(100vh - 120px );
 }
 
 // faire une line
@@ -19,4 +19,31 @@
   img {
     height: 400px!important;
   }
+}
+
+body {
+    background-color: #FFFFFF !important;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none !important;
+  background-color: transparent !important;
+}
+
+
+// turbo progress bar
+.turbo-progress-bar {
+  height: 10px;
+  background-color: #a11b4c;
+  margin-top: 60px;
+}
+
+.badge-danger {
+  background-color: #dc3545 !important;
+}
+
+.btn-outline-dark:hover {
+  background-color: #000!important;
+  color: white !important;
 }
