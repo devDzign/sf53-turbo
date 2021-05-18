@@ -22,7 +22,7 @@
 }
 
 body {
-    background-color: #e3e7ed !important;
+    background-color: #FFFFFF !important;
 }
 
 a {
@@ -41,4 +41,9 @@ a {
 
 .badge-danger {
   background-color: #dc3545 !important;
+}
+
+.btn-outline-dark:hover {
+  background-color: #000!important;
+  color: white !important;
 }

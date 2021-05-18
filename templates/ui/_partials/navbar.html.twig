@@ -34,10 +34,16 @@
             <ul class="navbar-nav ms-auto flex-nowrap">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
+                        <a href="{{ path('account', {  }) }}" class="nav-link m-2 menu-item">
+                            Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ path('app_logout', {  }) }}" class="nav-link m-2 menu-item">
                             Logout
                         </a>
                     </li>
+
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link mt-2 {% if currentPath == 'app_register' %} active {% endif %}"
