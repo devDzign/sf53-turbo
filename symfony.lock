@@ -139,11 +139,23 @@
             "./config/packages/fos_elastica.yaml"
         ]
     },
+    "guzzlehttp/guzzle": {
+        "version": "7.4-dev"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.4-dev"
+    },
+    "guzzlehttp/psr7": {
+        "version": "2.0-dev"
+    },
     "guzzlehttp/ringphp": {
         "version": "1.1-dev"
     },
     "guzzlehttp/streams": {
         "version": "3.0-dev"
+    },
+    "hamcrest/hamcrest-php": {
+        "version": "2.1-dev"
     },
     "jms/metadata": {
         "version": "2.x-dev"
@@ -168,6 +180,12 @@
     },
     "lcobucci/jwt": {
         "version": "4.2.x-dev"
+    },
+    "mailjet/mailjet-apiv3-php": {
+        "version": "dev-master"
+    },
+    "mockery/mockery": {
+        "version": "1.4.x-dev"
     },
     "monolog/monolog": {
         "version": "2.x-dev"
@@ -240,11 +258,23 @@
     "psr/event-dispatcher": {
         "version": "1.0.x-dev"
     },
+    "psr/http-client": {
+        "version": "1.0.x-dev"
+    },
+    "psr/http-factory": {
+        "version": "1.0.x-dev"
+    },
+    "psr/http-message": {
+        "version": "1.0.x-dev"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
     "psr/log": {
         "version": "1.1.x-dev"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "react/promise": {
         "version": "2.x-dev"

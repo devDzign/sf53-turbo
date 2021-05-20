@@ -16,6 +16,7 @@
         "easycorp/easyadmin-bundle": "^3.2",
         "friendsofsymfony/elastica-bundle": "6.0.x-dev",
         "knplabs/knp-paginator-bundle": "5.x-dev",
+        "mailjet/mailjet-apiv3-php": "dev-master",
         "phpdocumentor/reflection-docblock": "^5.0@dev",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.*",
