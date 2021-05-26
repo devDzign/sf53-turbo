@@ -8,9 +8,22 @@ namespace App\Model;
 class MailModel
 {
 
-    private $title;
-    private $subject;
-    private $content;
+    protected string $title;
+    protected string $subject;
+    protected string $content;
+
+    private function __construct(string $title, string $subject, string $content)
+    {
+        $this
+            ->setTitle($title)
+            ->setSubject($subject)
+            ->setContent($content);
+    }
+
+    public static function create(string $title, string $subject, string $content)
+    {
+        return new self($title, $subject, $content);
+    }
 
     public function getTitle(): ?string
     {

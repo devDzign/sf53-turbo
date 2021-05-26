@@ -17,14 +17,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class MessageController extends AbstractController
 {
 
-
-
     #[Route('/pages/contact', name: 'contact')]
     public function contact(
         Request $request
     ): Response {
-
-
 
         $form = $this->createFormBuilder()
             ->add(

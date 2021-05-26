@@ -31,7 +31,7 @@ services:
     mailer:
         image: schickling/mailcatcher
         container_name: '${DOCKER_PROJET_NAME}_mailer'
-        ports: [ 1025, 1080 ]
+        ports: [ 1025, 61418:1080 ]
 
      # elasticsearch server (official image)
       # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html

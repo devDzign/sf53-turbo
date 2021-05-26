@@ -48,12 +48,12 @@
                     <li class="nav-item">
                         <a class="nav-link mt-2 {% if currentPath == 'app_register' %} active {% endif %}"
                            href="{{ path('app_register', {  }) }}">
-                            Register
+                            <i class="fa fa-registered"></i> Register
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('app_login', {  }) }}" class="nav-link m-2 menu-item">
-                            Login
+                        <a href="{{ path('app_login', {  }) }}" class="nav-link m-2 mt-2 {% if currentPath == 'app_login' %} active {% endif %}">
+                            <i class="fas fa-sign-in-alt"></i> Login
                         </a>
                     </li>
                 {% endif %}

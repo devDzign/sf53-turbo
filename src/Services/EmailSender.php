@@ -13,7 +13,8 @@ class EmailSender implements EmailSenderInterface
 {
     public function send(User $user, MailModel $mailModel)
     {
-        $mj = new Client($_ENV('MJ_APIKEY_PUBLIC'), $_ENV('MJ_APIKEY_PRIVATE'),true,['version' => 'v3.1']);
+        $mj = new Client($_ENV['MJ_APIKEY_PUBLIC'], $_ENV['MJ_APIKEY_PRIVATE'],true,['version' => 'v3.1']);
+
         $body = [
             'Messages' => [
                 [
@@ -38,6 +39,7 @@ class EmailSender implements EmailSenderInterface
             ]
         ];
         $response = $mj->post(Resources::$Email, ['body' => $body]);
+
 //        $response->success() && dd($response->getData());
     }
 }
