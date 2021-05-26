@@ -1,0 +1,45 @@
+framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+#             async: '%env(RABBITMQ_DSN)%'
+#             async:
+#                 dsn: '%env(RABBITMQ_DSN)%'
+             async_doctrine:
+                 dsn: '%env(MESSENGER_TRANSPORT_DSN_DOCTRINE)%'
+                 options:
+                     auto_setup: false
+                     use_notify: true
+                     check_delayed_interval: 60000
+                 retry_strategy:
+                     max_retries: 3
+                     multiplier: 2
+             audit:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_DOCTRINE)%?queue_name=audit'
+#                options:
+#                    auto_setup: false
+#                    use_notify: true
+#                    check_delayed_interval: 60000
+                retry_strategy:
+                    max_retries: 3
+                    multiplier: 2
+             remove:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN_DOCTRINE)%?queue_name=remove'
+                options:
+#                    auto_setup: false
+#                    use_notify: true
+#                    check_delayed_interval: 60000
+                retry_strategy:
+                    max_retries: 3
+                    multiplier: 2
+             failed: 'doctrine://default?queue_name=failed'
+            # failed: 'doctrine://default?queue_name=failed'
+            # sync: 'sync://'
+
+        routing:
+            'App\Message\AddPostMessage': [async_doctrine]
+            'App\Message\RemovePostMessage': [remove]
+            'App\Message\SendEmailMessage': [audit]

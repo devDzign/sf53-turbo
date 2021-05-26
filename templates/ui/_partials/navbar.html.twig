@@ -34,6 +34,11 @@
             <ul class="navbar-nav ms-auto flex-nowrap">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
+                        <a href="{{ path('post_index', {  }) }}" class="nav-link m-2 menu-item {% if currentPath == 'post_index' %} active {% endif %}">
+                            Posts
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ path('account', {  }) }}" class="nav-link m-2 menu-item">
                             Account
                         </a>

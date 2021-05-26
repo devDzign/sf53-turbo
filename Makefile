@@ -120,6 +120,20 @@ require-files: .env.local
 sf-msg-cons: ## Messenger consume async chanel
 	$(CONSOLE) messenger:consume async -vv
 
+async-create: ## Messenger consume async_doctrine chanel
+	$(CONSOLE) messenger:consume async_doctrine -vv
+
+async-remove: ## Messenger consume async_doctrine chanel
+	$(CONSOLE) messenger:consume remove -vv
+
+async-audit: ## Messenger consume async_doctrine chanel
+	$(CONSOLE) messenger:consume audit -vv
+
+async-all: ## Messenger consume async_doctrine chanel
+	$(CONSOLE) messenger:consume async_doctrine remove audit -vv
+async-doc-watch: ## --watch indique à symfony de redémarer chaque fois qu'il y a un changement
+	$(SF) run -d --watch=config,src,template,vendor $(CONSOLE) messenger:consume async_doctrine audit
+
 sf-rabbitmq: ## Open manager rabbitMq in browser
 	$(SF) open:local:rabbitmq
 
