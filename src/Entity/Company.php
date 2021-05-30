@@ -2,71 +2,104 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\CompanyRepository;
+use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=CompanyRepository::class)
  */
+#[ApiResource(
+    collectionOperations: ["GET", "POST"],
+    itemOperations: [
+        "GET"=> ["normalization_context"=> ["groups"=> ["company:item:read", "company:read"]]],
+        "PUT"
+    ],
+    shortName: "companies",
+    denormalizationContext: ["groups" => ["company:write"], "swagger_definition_name" => "Write"],
+    normalizationContext: ["groups" => ["company:read"], "swagger_definition_name" => "Read"],
+    paginationClientItemsPerPage: true,
+    paginationItemsPerPage: 3,
+    paginationMaximumItemsPerPage: 3
+)
+]
+#[ApiFilter(SearchFilter::class, properties: ["name" => "partial", "id"=> "exact"])]
+#[ApiFilter(RangeFilter::class, properties: ["capital"])]
 class Company
 {
+
     /**
+     * Id de la companie
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"archived"})
      */
+    #[Groups(["company:read"])]
     private $id;
 
     /**
+     * ajouter la description que tu veux
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Groups({"archived"})
      */
+    #[Groups(["company:read","company:write"])]
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=LegalCategories::class)
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"archived"})
      */
+    #[Groups(["company:write", "archived", "company:read"])]
     private $legalCategory;
 
     /**
      * @ORM\Column(type="string", length=14)
-     * @Assert\Length(min=14,  max=14)
-     * @Groups({"archived"})
      */
+    #[
+        Groups(["company:read", "archived" , "company:write"]),
+        Assert\Length(min: 14,  max: 14),
+    ]
     private $siren;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived", "company:write"])]
     private $cityOfRegistration;
 
     /**
      * @ORM\Column(type="datetime_immutable")
      */
+    #[Groups(["company:read"])]
     private $dateOfRegistration;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank
-     * @Assert\Positive()
-     * @Groups({"archived"})
      */
+    #[
+        Groups(["company:read", "company:write", "archived"]),
+        Assert\NotBlank(),
+        Assert\Positive(),
+        Assert\Type(type: 'integer', message: 'The value {{ value }} is not a valid {{ type }}.')
+    ]
     private $capital;
 
     /**
      * @ORM\OneToMany(targetEntity=Address::class, mappedBy="company", cascade={"persist"}, orphanRemoval=true)
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived", "company:write"])]
     private $localizations;
 
     public function __construct()
@@ -134,11 +167,13 @@ class Company
         return $this->dateOfRegistration;
     }
 
-    public function setDateOfRegistration(\DateTimeImmutable $dateOfRegistration): self
+    /**
+     * How long ago in text that this cheese listing was added.
+     */
+    #[Groups(["company:item:read"])]
+    public function getCreatedAtAgo(): string
     {
-        $this->dateOfRegistration = $dateOfRegistration;
-
-        return $this;
+        return Carbon::instance($this->getDateOfRegistration())->diffForHumans();
     }
 
     public function getCapital(): ?int

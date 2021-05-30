@@ -2,59 +2,65 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AddressRepository::class)
  */
+#[ApiResource(
+    denormalizationContext: ["groups" => ["address:write", "company:write"]]
+)]
 class Address
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived"])]
     private $id;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived", "address:write", "company:write"])]
     private $streetNumber;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived", "address:write", "company:write"])]
     private $streetType;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived", "address:write", "company:write"])]
     private $streetName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived", "address:write", "company:write"])]
     private $city;
 
     /**
      * @ORM\Column(type="string", length=5)
      * @Assert\Regex(pattern="/^[A-Za-z0-9]{5}$/", message="Code postal invalide.")
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived", "address:write", "company:write"])]
     private $zipCode;
 
     /**
      * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="localizations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
+    #[Groups(["address:write"]), Assert\Valid()]
     private $company;
 
 
@@ -135,6 +141,16 @@ class Address
         return $this;
     }
 
+    #[SerializedName("address_complete")]
+    #[Groups(["company:read"])]
+    public function getCompleteAddress()
+    {
+        return (string) ($this->getStreetNumber() . ', ' .
+            $this->getStreetType() . ' ' .
+            $this->getStreetName() . ',' .
+            $this->getZipCode() . ' ' .
+            $this->getCity());
+    }
 
     public function __toString()
     {

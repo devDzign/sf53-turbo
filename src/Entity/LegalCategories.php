@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LegalCategoriesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -9,14 +10,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=LegalCategoriesRepository::class)
  */
+#[ApiResource()]
 class LegalCategories
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived"])]
     private $id;
 
     /**
@@ -27,8 +29,8 @@ class LegalCategories
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"archived"})
      */
+    #[Groups(["company:read", "archived"])]
     private $wording;
 
     public function getId(): ?int

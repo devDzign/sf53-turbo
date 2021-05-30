@@ -1,4 +1,21 @@
 {
+    "api-platform/api-pack": {
+        "version": "dev-main"
+    },
+    "api-platform/core": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "a93061567140e386f107be75340ac2aee3f86cbf"
+        },
+        "files": [
+            "./config/packages/api_platform.yaml",
+            "./config/routes/api_platform.yaml",
+            "./src/Entity/.gitignore"
+        ]
+    },
     "behat/mink": {
         "version": "1.8.x-dev"
     },
@@ -130,6 +147,9 @@
     "fakerphp/faker": {
         "version": "v1.15-dev"
     },
+    "fig/link-util": {
+        "version": "1.2.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "1.x-dev"
     },
@@ -195,6 +215,21 @@
     },
     "myclabs/deep-copy": {
         "version": "1.x-dev"
+    },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "./config/packages/nelmio_cors.yaml"
+        ]
+    },
+    "nesbot/carbon": {
+        "version": "4.x-dev"
     },
     "nikic/php-parser": {
         "version": "v4.10.5"
@@ -574,6 +609,9 @@
     "symfony/options-resolver": {
         "version": "5.3.x-dev"
     },
+    "symfony/orm-pack": {
+        "version": "dev-main"
+    },
     "symfony/password-hasher": {
         "version": "5.3.x-dev"
     },
@@ -677,6 +715,9 @@
     },
     "symfony/serializer": {
         "version": "5.3.x-dev"
+    },
+    "symfony/serializer-pack": {
+        "version": "dev-main"
     },
     "symfony/service-contracts": {
         "version": "2.4-dev"
@@ -831,6 +872,9 @@
     },
     "webmozart/assert": {
         "version": "1.10-dev"
+    },
+    "willdurand/negotiation": {
+        "version": "3.0-dev"
     },
     "zenstruck/browser": {
         "version": "v0.4.0"
