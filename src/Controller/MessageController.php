@@ -20,7 +20,8 @@ class MessageController extends AbstractController
     #[Route('/pages/contact', name: 'contact')]
     public function contact(
         Request $request
-    ): Response {
+    ): Response
+    {
 
         $form = $this->createFormBuilder()
             ->add(
@@ -31,7 +32,7 @@ class MessageController extends AbstractController
                         new NotBlank(),
                         new Length(['min' => 2]),
                     ],
-                    'attr'        => ['placeholder' => 'Ex: John Doe'],
+                    'attr' => ['placeholder' => 'Ex: John Doe'],
                 ]
             )
             ->add(
@@ -42,7 +43,7 @@ class MessageController extends AbstractController
                         new NotBlank(),
                         new Email(),
                     ],
-                    'attr'        => ['placeholder' => 'Ex: example@email.fr'],
+                    'attr' => ['placeholder' => 'Ex: example@email.fr'],
                 ]
             )
             ->add(
@@ -53,24 +54,23 @@ class MessageController extends AbstractController
                         new NotBlank(),
                         new Length(['min' => 10]),
                     ],
-                    'attr'        => ['placeholder' => 'Ex: Please enter your message here...'],
+                    'attr' => ['placeholder' => 'Ex: Please enter your message here...'],
                 ]
             )
             ->getForm();
 
+        $form->handleRequest($request);
 
-        return $this->handleForm(
-            $form,
-            $request,
-            function () {
-                $this->addFlash('success', 'message envoyé 🥇');
-                return $this->redirectToRoute('pages');
-            },
-            function (FormInterface $form, $data) {
-                return $this->render('pages/contact.html.twig', [
-                    'form' => $form->createView()
-                ]);
-            }
-        );
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'message envoyé 🥇');
+            return $this->redirectToRoute('pages');
+        }
+
+
+        return $this->renderForm(
+            'pages/contact.html.twig',
+            [
+                'form' => $form
+            ]);
     }
 }

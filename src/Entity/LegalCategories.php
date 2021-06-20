@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Action\NotFoundAction;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\LegalCategoriesRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +11,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=LegalCategoriesRepository::class)
  */
-#[ApiResource()]
+#[ApiResource(
+    collectionOperations: ["GET", "POST"],
+    itemOperations: [
+    "GET" => [
+        "controller" => NotFoundAction::class,
+        "read"=> false,
+        "output" => false, #  show result,
+        "openapi_context" => [
+            "summary"=> "hidden",
+        ]
+    ],
+],
+)]
 class LegalCategories
 {
     /**
