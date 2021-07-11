@@ -5,10 +5,14 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV5;
 
 #[ApiResource (
-    collectionOperations: ['get'],
+    collectionOperations: [
+        'get',
+        'post'
+    ],
     itemOperations: ['get'],
     paginationEnabled: false
 )]
@@ -35,9 +39,9 @@ class Dependency
     )]
     private string $version;
 
-    public function __construct(UuidV5 $uuid, string $name, string $version)
+    public function __construct( string $name, string $version)
     {
-        $this->uuid = $uuid;
+        $this->uuid = UuidV5::v5(new Uuid(UuidV5::NAMESPACE_URL), $name);
         $this->name = $name;
         $this->version = $version;
     }
