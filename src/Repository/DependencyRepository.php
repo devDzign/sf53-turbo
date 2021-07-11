@@ -40,7 +40,10 @@ class DependencyRepository
     {
         foreach ($this->getDependencyArray() as $name => $version) {
             $uuidGenerate = UuidV5::v5(new Uuid(UuidV5::NAMESPACE_URL), $name);
-            return ($uuid === $uuidGenerate->toRfc4122()) ? new Dependency(UuidV5::v5(new Uuid(UuidV5::NAMESPACE_URL), $name), $name, $version): null;
+
+            if($uuid === $uuidGenerate->toRfc4122()){
+                return new Dependency(UuidV5::v5(new Uuid(UuidV5::NAMESPACE_URL), $name), $name, $version);
+            }
         }
 
         return null;
