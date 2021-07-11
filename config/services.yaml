@@ -44,3 +44,6 @@ services:
         decorates: 'api_platform.openapi.factory'
         autoconfigure: false
 
+    App\Repository\DependencyRepository:
+        arguments: ['%kernel.project_dir%']
+
