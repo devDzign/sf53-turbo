@@ -1,0 +1,91 @@
+{
+    "api-platform/core": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "f132b33c43cf47b4451d91d2b57057eacb6b8e1d"
+        },
+        "files": [
+            "config/packages/api_platform.yaml",
+            "config/routes/api_platform.yaml",
+            "src/Entity/.gitignore"
+        ]
+    },
+    "fig/link-util": {
+        "version": "1.2.0"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "7.4-dev"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.4-dev"
+    },
+    "guzzlehttp/psr7": {
+        "version": "2.0-dev"
+    },
+    "hamcrest/hamcrest-php": {
+        "version": "2.1-dev"
+    },
+    "mailjet/mailjet-apiv3-php": {
+        "version": "dev-master"
+    },
+    "mockery/mockery": {
+        "version": "1.4.x-dev"
+    },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
+    },
+    "nesbot/carbon": {
+        "version": "4.x-dev"
+    },
+    "psr/http-client": {
+        "version": "1.0.x-dev"
+    },
+    "psr/http-factory": {
+        "version": "1.0.x-dev"
+    },
+    "psr/http-message": {
+        "version": "1.0.x-dev"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
+    },
+    "symfony/amqp-messenger": {
+        "version": "5.3.x-dev"
+    },
+    "symfony/doctrine-messenger": {
+        "version": "5.3.x-dev"
+    },
+    "symfony/messenger": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "e9a414b113ceadbf4e52abe37bf8f1b443f06ccb"
+        },
+        "files": [
+            "config/packages/messenger.yaml"
+        ]
+    },
+    "symfony/polyfill-php81": {
+        "version": "1.23-dev"
+    },
+    "symfony/redis-messenger": {
+        "version": "5.3.x-dev"
+    },
+    "willdurand/negotiation": {
+        "version": "3.0-dev"
+    }
+}

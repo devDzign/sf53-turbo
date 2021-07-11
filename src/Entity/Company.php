@@ -193,7 +193,7 @@ class Company
         ApiProperty(
             openapiContext: [
                 "type" => "boolean",
-                "description" => "Mise en ligne"
+                "description" => "Mise en ligne ou non"
             ]
         )
     ]
