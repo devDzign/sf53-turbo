@@ -21,7 +21,7 @@ class DependencyRepository
 
 
     /**
-     * @return array<Dependency>
+     * @return Dependency[]
      */
     public function getDependencies(): array
     {
@@ -47,5 +47,9 @@ class DependencyRepository
         }
 
         return null;
+    }
+
+    public function persist(Dependency $dependency){
+
     }
 }

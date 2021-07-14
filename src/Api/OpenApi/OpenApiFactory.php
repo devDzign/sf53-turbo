@@ -28,6 +28,14 @@ class OpenApiFactory implements OpenApiFactoryInterface
                $path->withGet(null);
            }
        }
+
+        $schemas = $openApi->getComponents()->getSecuritySchemes();
+        $schemas['bearerAuth'] = new \ArrayObject([
+            'type' => 'http',
+            'scheme'=> 'bearer',
+            'bearerFormat' => 'JWT'
+        ]);
+
         return $openApi;
     }
 }
